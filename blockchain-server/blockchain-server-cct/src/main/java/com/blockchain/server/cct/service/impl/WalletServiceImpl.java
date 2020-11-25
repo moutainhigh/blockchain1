@@ -6,6 +6,7 @@ import com.blockchain.server.cct.common.enums.CCTEnums;
 import com.blockchain.server.cct.common.exception.CCTException;
 import com.blockchain.server.cct.feign.*;
 import com.blockchain.server.cct.service.WalletService;
+import feign.Feign;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -30,12 +31,17 @@ public class WalletServiceImpl implements WalletService {
     @Autowired
     private TronFeign tronFeign;
 
+
+    @Autowired
+    private CMCFeign cmcFeign;
+
     //主网标识
     private static final String BTC_NET = "BTC";
     private static final String ETH_NET = "ETH";
     private static final String EOS_NET = "EOS";
     private static final String LTC_NET = "LTC";
     private static final String TRX_NET = "TRX";
+    private static final String CMC_NET = "CMC";
 
     //币币交易调用钱包Feign调用应用标识
     private static final String CCT_APP = "CCT";
@@ -67,6 +73,10 @@ public class WalletServiceImpl implements WalletService {
                 break;
             case TRX_NET:
                 tronFeign.order(order);
+                break;
+
+            case CMC_NET:
+                cmcFeign.order(order);
                 break;
             default:
                 LOG.error("发布订单失败，钱包处理出现未知主网标识！");
@@ -102,6 +112,10 @@ public class WalletServiceImpl implements WalletService {
                 break;
             case TRX_NET:
                 tronFeign.change(change);
+                break;
+
+            case CMC_NET:
+                cmcFeign.change(change);
                 break;
             default:
                 LOG.error("操作失败，钱包处理出现未知主网标识！");

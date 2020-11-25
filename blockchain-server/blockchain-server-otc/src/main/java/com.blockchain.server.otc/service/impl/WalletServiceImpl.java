@@ -34,12 +34,16 @@ public class WalletServiceImpl implements WalletService {
     @Autowired
     private CoinService coinService;
 
+    @Autowired
+    private CMCFeign cmcFeign;
+
     //主网标识
     private static final String BTC_NET = "BTC";
     private static final String ETH_NET = "ETH";
     private static final String EOS_NET = "EOS";
     private static final String LTC_NET = "LTC";
     private static final String TRX_NET = "TRX";
+    private static final String CMC_NET = "CMC";
 
     //币币交易调用钱包Feign调用应用标识
     private static final String C2C_APP = "C2C";
@@ -79,6 +83,12 @@ public class WalletServiceImpl implements WalletService {
             case TRX_NET:
                 tronFeign.order(order);
                 break;
+
+            case CMC_NET:
+                cmcFeign.order(order);
+                break;
+
+
             default:
                 LOG.error("更新余额失败，钱包处理出现未知主网标识！");
                 throw new OtcException(OtcEnums.WALLET_COIN_NET_ERROR);
@@ -121,6 +131,11 @@ public class WalletServiceImpl implements WalletService {
             case TRX_NET:
                 tronFeign.change(change);
                 break;
+
+            case CMC_NET:
+                cmcFeign.change(change);
+                break;
+
             default:
                 LOG.error("扣款或加钱失败，钱包处理出现未知主网标识！");
                 throw new OtcException(OtcEnums.WALLET_COIN_NET_ERROR);

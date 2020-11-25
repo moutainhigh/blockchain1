@@ -28,6 +28,7 @@
         <module>blockchain-server-quantized</module>
         <module>blockchain-server-tron</module>
         <module>blockchain-server-cmc</module>
+
     </modules>
 
     <dependencies>

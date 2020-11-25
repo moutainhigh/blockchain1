@@ -1,25 +1,21 @@
-#btc:
+#cmc:
 #  #测试网
 #  rpc:
 #    user: admin
 #    password: admin123
 #    url: http://120.79.243.120:8332
-#  #测试节点USDT代币id
-#  usdt_property_id: 1
-##  #正式节点USDT代币id
-##  usdt_property_id: 31
 #
 ## 控制模块内定时器是否启动时打开
 #schedule:
 #  open: false
 
 
-btc:
-  #主网
+cmc:
+  #正式网
   rpc:
-    user: btcrpc
-    password: EA_R@c)rkY62
-    url: http://184.105.242.147:18080
+    user: tst_rpc
+    password: tst888
+    url: http://43.249.31.54:9888
   #正式节点USDT代币id
   usdt_property_id: 31
 
